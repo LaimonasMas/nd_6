@@ -109,3 +109,26 @@ foreach ($pagalDalikliuKieki as $value) {
 _dc($result);
 ?>
 
+<h2>ND nr.6</h2>
+
+<?php
+
+echo 'Sugeneruokite masyvą iš 100 elementų, kurio reikšmės atsitiktiniai skaičiai nuo 333 iki 777. Naudodami 4 uždavinio funkciją iš masyvo ištrinkite pirminius skaičius.';
+echo '<br><br>';
+$array6 = [];
+for ($i=0; $i < 100; $i++) { 
+    $array6[] = rand(333, 777);
+}
+_dc($array6);
+$naujas = [];
+foreach ($array6 as $key => $value) {
+    if (divide($value) !== 0) {
+        $naujas[] = $value;
+    }
+}
+_dc($naujas);
+?>
+
+<h2>ND nr.7</h2>
+
+<?php
