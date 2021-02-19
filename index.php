@@ -49,7 +49,7 @@ $exploded2 = explode(' ', $matched2);
 // _dc($exploded2);
 $string3 = '';
 foreach ($exploded2 as $value) {
-    $string3 .= "<h1>$value</h1>";
+    $string3 .= "<h1 style=\"display: inline-block;\">$value</h1>" . ' ';
 }
 echo tekstas($string3);
 ?>
@@ -60,12 +60,13 @@ echo tekstas($string3);
 
 echo 'Parašykite funkciją, kuri skaičiuotų, iš kiek sveikų skaičių jos argumentas dalijasi be liekanos (išskyrus vienetą ir patį save) Argumentą užrašykite taip, kad būtų galima įvesti tik sveiką skaičių.';
 echo '<br><br>';
-function divide($num) {    
+function divide($num)
+{
     if ((!is_numeric($num)) || ($num === null) || (!is_int($num))) {
         return 'Prašau įveskite sveiką skaičių';
     }
     $count4 = 0;
-    for ($i=2; $i < $num; $i++) { 
+    for ($i = 2; $i < $num; $i++) {
         if ($num % $i === 0) {
             $count4++;
         }
@@ -83,7 +84,7 @@ echo 'Sugeneruokite masyvą iš 100 elementų, kurio reikšmės atsitiktiniai sk
 echo '<br><br>';
 // sukuriu nauja masyva su duotom reiksmem
 $array5 = [];
-for ($i=0; $i < 100; $i++) { 
+for ($i = 0; $i < 100; $i++) {
     $array5[] = rand(33, 77);
 }
 // _dc($array5);
@@ -116,7 +117,7 @@ _dc($result);
 echo 'Sugeneruokite masyvą iš 100 elementų, kurio reikšmės atsitiktiniai skaičiai nuo 333 iki 777. Naudodami 4 uždavinio funkciją iš masyvo ištrinkite pirminius skaičius.';
 echo '<br><br>';
 $array6 = [];
-for ($i=0; $i < 100; $i++) { 
+for ($i = 0; $i < 100; $i++) {
     $array6[] = rand(333, 777);
 }
 _dc($array6);
@@ -132,3 +133,34 @@ _dc($naujas);
 <h2>ND nr.7</h2>
 
 <?php
+
+echo 'Sugeneruokite atsitiktinio (nuo 10 iki 20) ilgio masyvą, kurio visi, išskyrus paskutinį, elementai yra atsitiktiniai skaičiai nuo 0 iki 10, o paskutinis masyvas, kuris generuojamas pagal tokią pat salygą kaip ir pirmasis masyvas. Viską pakartokite atsitiktinį nuo 10 iki 30  kiekį kartų. Paskutinio masyvo paskutinis elementas yra lygus 0.';
+echo '<br><br>';
+$mainLength = rand(10, 30);
+echo $mainLength;
+echo '<br><br>';
+function recursion($mainLength, $num)
+{
+    $array7 = [];
+    $length = rand(10, 20);
+    for ($i = 0; $i < $length - 1; $i++) {
+        $array7[] = rand(0, 10);
+    }
+    if ($num < $mainLength) {
+        $array7[$length - 1] = recursion($mainLength, $num + 1);
+    } else if ($num === $mainLength) {
+        $array7[$length - 1] = 0;
+        return $array7;
+    }
+    return $array7;
+}
+echo '<pre>';
+print_r(recursion($mainLength, 1));
+echo '</pre>';
+?>
+
+<h2>ND nr.8</h2>
+
+<?php
+
+
