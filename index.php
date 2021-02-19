@@ -80,5 +80,32 @@ echo divide(100);
 <?php
 
 echo 'Sugeneruokite masyvą iš 100 elementų, kurio reikšmės atsitiktiniai skaičiai nuo 33 iki 77. Išrūšiuokite masyvą pagal daliklių be liekanos kiekį mažėjimo tvarka, panaudodami ketvirto uždavinio funkciją.';
+echo '<br><br>';
+// sukuriu nauja masyva su duotom reiksmem
+$array5 = [];
+for ($i=0; $i < 100; $i++) { 
+    $array5[] = rand(33, 77);
+}
+// _dc($array5);
 
+// i nauja masyva sukeliu reiksmes su dalikliais
+$pagalDalikliuKieki = [];
+foreach ($array5 as $key => $value) {
+    $pagalDalikliuKieki[] = ['key' => divide($value), 'value' => $value];
+}
+// _dc($pagalDalikliuKieki);
+
+// isrusiuoju pagal daliklius mazejimo tvarka
+usort($pagalDalikliuKieki, function ($a, $b) {
+    return $b['key'] <=> $a['key'];
+});
+// _dc($pagalDalikliuKieki);
+
+//sukeliu i nauja masyva tik vertes
+$result = [];
+foreach ($pagalDalikliuKieki as $value) {
+    $result[] = $value['value'];
+}
+_dc($result);
+?>
 
