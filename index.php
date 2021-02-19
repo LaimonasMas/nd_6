@@ -37,15 +37,48 @@ echo '<br><br>';
 $randomStr = md5(time());
 echo $randomStr;
 echo '<br><br>';
+// paternas rasti raidem
+$pattern = "/[a-z]+/";
+$matched = preg_replace($pattern, ' ', $randomStr);
+$exploded = explode(' ', $matched);
+// paternas rasti tarpus pradzioj ir bagaigoj (jei $randomStr prasideda ir/arba baigiasi su raide preg_replace paliks tarpa)
+$pattern2 = "/^\s+|\s+$/";
+$matched2 = preg_replace($pattern2, '', $matched);
+// _dc($exploded);
+$exploded2 = explode(' ', $matched2);
+// _dc($exploded2);
+$string3 = '';
+foreach ($exploded2 as $value) {
+    $string3 .= "<h1>$value</h1>";
+}
+echo tekstas($string3);
+?>
+
+<h2>ND nr.4</h2>
+
+<?php
+
+echo 'Parašykite funkciją, kuri skaičiuotų, iš kiek sveikų skaičių jos argumentas dalijasi be liekanos (išskyrus vienetą ir patį save) Argumentą užrašykite taip, kad būtų galima įvesti tik sveiką skaičių.';
+echo '<br><br>';
+function divide($num) {    
+    if ((!is_numeric($num)) || ($num === null) || (!is_int($num))) {
+        return 'Prašau įveskite sveiką skaičių';
+    }
+    $count4 = 0;
+    for ($i=2; $i < $num; $i++) { 
+        if ($num % $i === 0) {
+            $count4++;
+        }
+    }
+    return $count4;
+}
+echo divide(100);
+?>
+
+<h2>ND nr.5</h2>
+
+<?php
+
+echo 'Sugeneruokite masyvą iš 100 elementų, kurio reikšmės atsitiktiniai skaičiai nuo 33 iki 77. Išrūšiuokite masyvą pagal daliklių be liekanos kiekį mažėjimo tvarka, panaudodami ketvirto uždavinio funkciją.';
 
 
-$pattern = "/[0-9]+/";
-if(preg_match_all($pattern, $randomStr, $matches)) {
-    print_r($matches);
-  }
-
-
-// $input = $randomStr;
-// $pattern = "/[0-9]+/";
-// $result = preg_replace_callback($pattern, 'countLetters', $input);
-// echo $result;
