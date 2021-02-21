@@ -36,7 +36,7 @@ echo 'Generuokite atsitiktinį stringą, pasinaudodami kodu md5(time()). Visus s
 echo '<br><br>';
 $randomStr = md5(time());
 echo $randomStr;
-echo '<br><br>';
+echo '<br>';
 // paternas rasti raidem
 $pattern = "/[a-z]+/";
 $matched = preg_replace($pattern, ' ', $randomStr);
@@ -49,7 +49,7 @@ $exploded2 = explode(' ', $matched2);
 // _dc($exploded2);
 $string3 = '';
 foreach ($exploded2 as $value) {
-    $string3 .= "<h1 style=\"display: inline-block;\">$value</h1>" . ' ';
+    $string3 .= "<h1 style=\"display: inline-block; padding: 0 10px;\">$value</h1>";
 }
 echo tekstas($string3);
 ?>
@@ -137,6 +137,7 @@ _dc($naujas);
 echo 'Sugeneruokite atsitiktinio (nuo 10 iki 20) ilgio masyvą, kurio visi, išskyrus paskutinį, elementai yra atsitiktiniai skaičiai nuo 0 iki 10, o paskutinis masyvas, kuris generuojamas pagal tokią pat salygą kaip ir pirmasis masyvas. Viską pakartokite atsitiktinį nuo 10 iki 30  kiekį kartų. Paskutinio masyvo paskutinis elementas yra lygus 0.';
 echo '<br><br>';
 $mainLength = rand(10, 30);
+
 echo $mainLength;
 echo '<br><br>';
 function recursion($mainLength, $num)
@@ -155,12 +156,138 @@ function recursion($mainLength, $num)
     return $array7;
 }
 echo '<pre>';
-print_r(recursion($mainLength, 1));
+$result7 = recursion($mainLength, 1);
+print_r($result7);
 echo '</pre>';
 ?>
 
 <h2>ND nr.8</h2>
 
 <?php
+
+echo 'Suskaičiuokite septinto uždavinio elementų, kurie nėra masyvai, sumą.';
+echo '<br><br>';
+echo $mainLength;
+
+$array8 = $result7;
+_dc($array8);
+
+
+// function lastIndex(){
+
+// }
+
+// _dc(array_sum($array8));
+// _dc(array_sum($array8[count($array8)-1]));
+// _dc(array_sum($array8[count($array8)-1][count($array8[count($array8)-1])-1]));
+// _dc(array_sum($array8[count($array8)-1][count($array8[count($array8)-1])-1][count($array8[count($array8)-1][count($array8[count($array8)-1])-1])-1]));
+// _dc(array_sum($array8[count($array8)-1][count($array8[count($array8)-1])-1][count($array8[count($array8)-1][count($array8[count($array8)-1])-1])-1][count($array8[count($array8)-1][count($array8[count($array8)-1])-1][count($array8[count($array8)-1][count($array8[count($array8)-1])-1])-1])-1]));
+?>
+
+<h2>ND nr.9</h2>
+
+<?php
+
+echo 'Sugeneruokite masyvą iš trijų elementų, kurie yra atsitiktiniai skaičiai nuo 1 iki 33. Jeigu tarp trijų paskutinių elementų yra nors vienas ne pirminis skaičius, prie masyvo pridėkite dar vieną elementą- atsitiktinį skaičių nuo 1 iki 33. Vėl patikrinkite pradinę sąlygą ir jeigu reikia pridėkite dar vieną elementą. Kartokite, kol sąlyga nereikalaus pridėti elemento.';
+$pirminiai = [];
+for ($i = 1; $i < 200; $i++) {
+    $count11B = 0;
+    for ($j = 1; $j <= $i; $j++) {
+        if ($i % $j === 0) {
+            $count11B++;
+        }
+    }
+    if ($count11B === 2) {
+        array_push($pirminiai, $i);
+    }
+}
+_dc($pirminiai);
+$array9 = [];
+for ($i = 0; $i < 3; $i++) {
+    $array9[] = rand(1, 33);
+}
+_dc($array9);
+for ($i = 0; $i < count($array9); $i++) {
+    while (true) {
+        if (!in_array($array9[count($array9) - 1], $pirminiai) || !in_array($array9[count($array9) - 2], $pirminiai) || !in_array($array9[count($array9) - 3], $pirminiai)) {
+            $array9[] = rand(1, 33);
+        } else {
+            break;
+        }
+    }
+}
+_dc($array9);
+?>
+
+<h2>ND nr.10</h2>
+
+<?php
+
+echo 'Sugeneruokite masyvą iš 10 elementų, kurie yra masyvai iš 10 elementų, kurie yra atsitiktiniai skaičiai nuo 1 iki 100. Jeigu tokio masyvo pirminių skaičių vidurkis mažesnis už 70, suraskite masyve mažiausią skaičių (nebūtinai pirminį) ir prie jo pridėkite 3. Vėl paskaičiuokite masyvo pirminių skaičių vidurkį ir jeigu mažesnis nei 70 viską kartokite.';
+
+$array10 = [];
+for ($i = 0; $i < 10; $i++) {
+    for ($j = 0; $j < 10; $j++) {
+        $array10[$i][$j] = rand(1, 100);
+    }
+}
+_dc($array10);
+
+$count10 = 0;
+do {
+    $array10Pirminiai = [];
+    echo 'pradejo suktis '. $count10+1 .' kartas';
+    echo '<br>';
+    for ($i = 0; $i < count($array10); $i++) {
+        for ($j = 0; $j < count($array10[$i]); $j++) {
+            if (in_array($array10[$i][$j], $pirminiai)) {
+                $array10Pirminiai[] = $array10[$i][$j];
+            }
+        }
+    }
+    $primeAverige = array_sum($array10Pirminiai) / count($array10Pirminiai);
+    echo 'Stai pirminiai skaiciai: ';
+    _dc($array10Pirminiai);
+    echo '<br>';
+    echo "Vidurkis yra $primeAverige";
+    echo '<br>';
+    if ($primeAverige < 70) {
+        $smallest = [];
+        for ($i = 0; $i < count($array10); $i++) {
+            if (!in_array(min($array10[$i]), $smallest))
+            $smallest[] = min($array10[$i]);
+        }
+    } 
+    if ($primeAverige >= 70) {
+        echo 'Cia baigiam cikla';
+        echo '<br>';
+        break;
+    }
+    echo 'Maziausiu skaiciu sarasas: ';
+    _dc($smallest);
+    $smallestA = min($smallest);
+    echo "pats maziausias skaicius yra $smallestA";
+    echo '<br>';
+    for ($i = 0; $i < count($array10); $i++) {
+        for ($j = 0; $j < count($array10[$i]); $j++) {
+            if ($array10[$i][$j] === $smallestA) {
+                $array10[$i][$j] += 3; 
+                continue;
+            }
+        }
+    }
+    _dc($array10);
+    $count10++;
+    echo '<br>';
+    echo "baige suktis $count10 kartas";
+    echo '<br>-------------------<br>';
+} while ($primeAverige < 70); 
+?>
+
+<h2>ND nr.11</h2>
+
+<?php
+
+
 
 
