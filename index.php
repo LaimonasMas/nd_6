@@ -171,11 +171,22 @@ echo $mainLength;
 
 $array8 = $result7;
 _dc($array8);
+$sum8 = 0;
+$count8 = 1;
+while (true) {
+    $sum8 += array_sum($array8);
+    echo "$count8 iteracijos masyvo suma yra: ". array_sum($array8);
+    if ($array8[count($array8) - 1] === 0) {
+        break;
+    }
+    $array8 = $array8[count($array8) - 1];
+    _dc($array8);  
+    $count8++;
+}
+echo '<br><br>';
 
+echo "Septinto uždavinio elementų, kurie nėra masyvai, suma yra: $sum8";
 
-// function lastIndex(){
-
-// }
 
 // _dc(array_sum($array8));
 // _dc(array_sum($array8[count($array8)-1]));
@@ -236,7 +247,7 @@ _dc($array10);
 $count10 = 0;
 do {
     $array10Pirminiai = [];
-    echo 'pradejo suktis '. $count10+1 .' kartas';
+    echo 'pradejo suktis ' . $count10 + 1 . ' kartas';
     echo '<br>';
     for ($i = 0; $i < count($array10); $i++) {
         for ($j = 0; $j < count($array10[$i]); $j++) {
@@ -255,9 +266,9 @@ do {
         $smallest = [];
         for ($i = 0; $i < count($array10); $i++) {
             if (!in_array(min($array10[$i]), $smallest))
-            $smallest[] = min($array10[$i]);
+                $smallest[] = min($array10[$i]);
         }
-    } 
+    }
     if ($primeAverige >= 70) {
         echo 'Cia baigiam cikla';
         echo '<br>';
@@ -271,7 +282,7 @@ do {
     for ($i = 0; $i < count($array10); $i++) {
         for ($j = 0; $j < count($array10[$i]); $j++) {
             if ($array10[$i][$j] === $smallestA) {
-                $array10[$i][$j] += 3; 
+                $array10[$i][$j] += 3;
                 continue;
             }
         }
@@ -281,13 +292,9 @@ do {
     echo '<br>';
     echo "baige suktis $count10 kartas";
     echo '<br>-------------------<br>';
-} while ($primeAverige < 70); 
+} while ($primeAverige < 70);
 ?>
 
 <h2>ND nr.11</h2>
 
 <?php
-
-
-
-
