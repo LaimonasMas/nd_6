@@ -168,7 +168,6 @@ echo '</pre>';
 echo 'Suskaičiuokite septinto uždavinio elementų, kurie nėra masyvai, sumą.';
 echo '<br><br>';
 echo $mainLength;
-
 $array8 = $result7;
 _dc($array8);
 $sum8 = 0;
@@ -186,13 +185,6 @@ while (true) {
 echo '<br><br>';
 
 echo "Septinto uždavinio elementų, kurie nėra masyvai, suma yra: $sum8";
-
-
-// _dc(array_sum($array8));
-// _dc(array_sum($array8[count($array8)-1]));
-// _dc(array_sum($array8[count($array8)-1][count($array8[count($array8)-1])-1]));
-// _dc(array_sum($array8[count($array8)-1][count($array8[count($array8)-1])-1][count($array8[count($array8)-1][count($array8[count($array8)-1])-1])-1]));
-// _dc(array_sum($array8[count($array8)-1][count($array8[count($array8)-1])-1][count($array8[count($array8)-1][count($array8[count($array8)-1])-1])-1][count($array8[count($array8)-1][count($array8[count($array8)-1])-1][count($array8[count($array8)-1][count($array8[count($array8)-1])-1])-1])-1]));
 ?>
 
 <h2>ND nr.9</h2>
