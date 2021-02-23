@@ -121,13 +121,13 @@ for ($i = 0; $i < 100; $i++) {
     $array6[] = rand(333, 777);
 }
 _dc($array6);
-$naujas = [];
 foreach ($array6 as $key => $value) {
-    if (divide($value) !== 0) {
-        $naujas[] = $value;
+    if (divide($array6[$key]) === 0) {
+        unset($array6[$key]);
     }
 }
-_dc($naujas);
+_dc($array6);
+_dc(count($array6));
 ?>
 
 <h2>ND nr.7</h2>
@@ -291,22 +291,38 @@ do {
 
 <?php
 
-echo ' Sugeneruokite masyvą, kurio ilgis atsitiktinai kinta nuo 10 iki 100. Masyvo reikšmes sudaro atsitiktiniai skaičiai 0-100 ir masyvai. Santykis skaičiuojamas atsitiktinai, bet taip, kad skaičiai sudarytų didesnę dalį nei masyvai. Reikšmių masyvų gylis nuo 1 iki 5, o reikšmės analogiškos (nuo 50% iki 100% atsitiktiniai skaičiai 0-100, o likusios masyvai) ir t.t. kol visos galutinės reikšmės bus skaičiai ne masyvai. Suskaičiuoti kiek elementų turi masyvas. Suskaičiuoti masyvo elementų (tie kurie ne masyvai) sumą. Suskaičiuoti maksimalų masyvo gylį. Atvaizduokite masyvą grafiškai . Masyvą pavazduokite kaip div elementą, kuris yra display:flex, kurio viduje yra skaičiai. Kiekvienas div elementas turi savo unikalų id ir unikalią background spalvą (spalva pvz nepavaizduota). pvz: ';
+echo ' Sugeneruokite masyvą, kurio ilgis atsitiktinai kinta nuo 10 iki 100. Masyvo reikšmes sudaro atsitiktiniai skaičiai 0-100 ir masyvai. Santykis skaičiuojamas atsitiktinai, bet taip, kad skaičiai sudarytų didesnę dalį nei masyvai. Reikšmių masyvų gylis (ilgis???) nuo 1 iki 5, o reikšmės analogiškos (nuo 50% iki 100% atsitiktiniai skaičiai 0-100, o likusios masyvai) ir t.t. kol visos galutinės reikšmės bus skaičiai ne masyvai. Suskaičiuoti kiek elementų turi masyvas. Suskaičiuoti masyvo elementų (tie kurie ne masyvai) sumą. Suskaičiuoti maksimalų masyvo gylį. Atvaizduokite masyvą grafiškai . Masyvą pavazduokite kaip div elementą, kuris yra display:flex, kurio viduje yra skaičiai. Kiekvienas div elementas turi savo unikalų id ir unikalią background spalvą (spalva pvz nepavaizduota). pvz: ';
 echo '<br><br>';
-
+$masyvuMasyvoIlgis = rand(1, 5);
+$masyvuMasyvoreiksmes = [];
 $masyvoIlgis = rand(10, 100);
 echo "masyvo ilgis $masyvoIlgis";
 echo '<br><br>';
-$length11A = rand(51, 99);
+$length11A = rand(51, 100);
 echo "procentas virs 50% $length11A";
 echo '<br><br>';
 $chance11 = ($masyvoIlgis * $length11A)/100;
-$skaiciuKiekis = ceil($chance11);
+$skaiciuKiekis = floor($chance11);
 echo "skaiciu kiekis $skaiciuKiekis";
 echo '<br><br>';
 $masyvuKiekis = $masyvoIlgis - $skaiciuKiekis;
 echo "masyvu kiekis $masyvuKiekis";
 $array11 = [];
-for ($i=0; $i < $masyvoIlgis; $i++) { 
-    # code...
-}
+$count11 = 0;
+
+// function repeat() {
+    
+// }
+
+// foreach (range(0, $masyvoIlgis-1) as $key => $value) {     
+//         if ($key < $skaiciuKiekis) {
+//             $array11[] = rand(0, 100);
+//         } else {
+//             $array11[] = $array11;
+//         }
+//         $count11++;
+// }
+
+// _dc($array11);
+
+// } while ($skaiciuKiekis === count($array11));
