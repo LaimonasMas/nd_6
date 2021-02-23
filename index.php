@@ -316,9 +316,8 @@ echo "masyvu kiekis $masyvuKiekis";
 $array11 = [];
 $count11 = 0;
 
-// function repeat() {
-    
-// }
+
+
 
 // foreach (range(0, $masyvoIlgis-1) as $key => $value) {     
 //         if ($key < $skaiciuKiekis) {
