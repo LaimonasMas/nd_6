@@ -3,10 +3,14 @@
 <?php
 
 echo 'Parašykite funkciją, kurios argumentas būtų tekstas, kuris yra įterpiamas į h1 tagą.';
+echo '<br><br>';
 $text = 'tekstas, kuris yra įterpiamas į h1 tagą!';
 function tekstas($text)
 {
-    return "<h1>$text</h1>";
+    if (is_array($text)) {
+        $text = $text[0];
+    }
+    return "<h1 style='display: inline;'>$text</h1>";
 };
 echo tekstas($text);
 ?>
@@ -37,21 +41,20 @@ echo '<br><br>';
 $randomStr = md5(time());
 echo $randomStr;
 echo '<br>';
-// paternas rasti raidem
-$pattern = "/[a-z]+/";
-$matched = preg_replace($pattern, ' ', $randomStr);
-$exploded = explode(' ', $matched);
-// paternas rasti tarpus pradzioj ir bagaigoj (jei $randomStr prasideda ir/arba baigiasi su raide preg_replace paliks tarpa)
-$pattern2 = "/^\s+|\s+$/";
-$matched2 = preg_replace($pattern2, '', $matched);
-// _dc($exploded);
-$exploded2 = explode(' ', $matched2);
-// _dc($exploded2);
-$string3 = '';
-foreach ($exploded2 as $value) {
-    $string3 .= "<h1 style=\"display: inline-block; padding: 0 10px;\">$value</h1>";
-}
-echo tekstas($string3);
+_d($randomStr);
+
+// $pakeistasRandomStr = preg_replace_callback('/\d+/', function($match) {
+//     _d($match);
+//     return tekstas($match[0]);
+
+// }, $randomStr);
+
+// jei tekstas() funkcija turi viduje keitima i array, tada galima daryt kaip zemiau:
+
+$pakeistasRandomStr = preg_replace_callback('/\d+/', 'tekstas', $randomStr);
+
+
+echo $pakeistasRandomStr;
 ?>
 
 <h2>ND nr.4</h2>
@@ -121,8 +124,10 @@ for ($i = 0; $i < 100; $i++) {
     $array6[] = rand(333, 777);
 }
 _dc($array6);
-foreach ($array6 as $key => $value) {
-    if (divide($array6[$key]) === 0) {
+foreach ($array6 as $key => &$value) {
+    // echo $value . ' ';
+    if (divide($value) === 0) {
+        echo $value . ' ';
         unset($array6[$key]);
     }
 }
@@ -174,12 +179,12 @@ $sum8 = 0;
 $count8 = 1;
 while (true) {
     $sum8 += array_sum($array8);
-    echo "$count8 iteracijos masyvo suma yra: ". array_sum($array8);
+    // echo "$count8 iteracijos masyvo suma yra: ". array_sum($array8);
     if ($array8[count($array8) - 1] === 0) {
         break;
     }
     $array8 = $array8[count($array8) - 1];
-    _dc($array8);  
+    // _dc($array8);  
     $count8++;
 }
 echo '<br><br>';
@@ -204,7 +209,7 @@ for ($i = 1; $i < 200; $i++) {
         array_push($pirminiai, $i);
     }
 }
-_dc($pirminiai);
+// _dc($pirminiai);
 $array9 = [];
 for ($i = 0; $i < 3; $i++) {
     $array9[] = rand(1, 33);
@@ -254,6 +259,11 @@ do {
     echo '<br>';
     echo "Vidurkis yra $primeAverige";
     echo '<br>';
+    if ($primeAverige >= 70) {
+        echo 'Cia baigiam cikla';
+        echo '<br>';
+        break;
+    }
     if ($primeAverige < 70) {
         $smallest = [];
         for ($i = 0; $i < count($array10); $i++) {
@@ -261,11 +271,7 @@ do {
                 $smallest[] = min($array10[$i]);
         }
     }
-    if ($primeAverige >= 70) {
-        echo 'Cia baigiam cikla';
-        echo '<br>';
-        break;
-    }
+
     echo 'Maziausiu skaiciu sarasas: ';
     _dc($smallest);
     $smallestA = min($smallest);
@@ -291,7 +297,7 @@ do {
 
 <?php
 
-echo ' Sugeneruokite masyvą, kurio ilgis atsitiktinai kinta nuo 10 iki 100. Masyvo reikšmes sudaro atsitiktiniai skaičiai 0-100 ir masyvai. Santykis skaičiuojamas atsitiktinai, bet taip, kad skaičiai sudarytų didesnę dalį nei masyvai. Reikšmių masyvų gylis (ilgis???) nuo 1 iki 5, o reikšmės analogiškos (nuo 50% iki 100% atsitiktiniai skaičiai 0-100, o likusios masyvai) ir t.t. kol visos galutinės reikšmės bus skaičiai ne masyvai. Suskaičiuoti kiek elementų turi masyvas. Suskaičiuoti masyvo elementų (tie kurie ne masyvai) sumą. Suskaičiuoti maksimalų masyvo gylį. Atvaizduokite masyvą grafiškai . Masyvą pavazduokite kaip div elementą, kuris yra display:flex, kurio viduje yra skaičiai. Kiekvienas div elementas turi savo unikalų id ir unikalią background spalvą (spalva pvz nepavaizduota). pvz: ';
+echo ' Sugeneruokite masyvą, kurio ilgis atsitiktinai kinta nuo 10 iki 100. Masyvo reikšmes sudaro atsitiktiniai skaičiai 0-100 ir masyvai. Santykis skaičiuojamas atsitiktinai, bet taip, kad skaičiai sudarytų didesnę dalį nei masyvai. Reikšmių masyvų ilgis nuo 1 iki 5, o reikšmės analogiškos (nuo 50% iki 100% atsitiktiniai skaičiai 0-100, o likusios masyvai) ir t.t. kol visos galutinės reikšmės bus skaičiai ne masyvai. Suskaičiuoti kiek elementų turi masyvas. Suskaičiuoti masyvo elementų (tie kurie ne masyvai) sumą. Suskaičiuoti maksimalų masyvo gylį. Atvaizduokite masyvą grafiškai . Masyvą pavazduokite kaip div elementą, kuris yra display:flex, kurio viduje yra skaičiai. Kiekvienas div elementas turi savo unikalų id ir unikalią background spalvą (spalva pvz nepavaizduota). pvz: ';
 echo '<br><br>';
 $masyvuMasyvoIlgis = rand(1, 5);
 $masyvuMasyvoreiksmes = [];
